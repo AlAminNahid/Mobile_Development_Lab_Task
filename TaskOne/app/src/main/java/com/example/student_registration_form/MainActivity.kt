@@ -12,7 +12,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.core.view.isEmpty
+import androidx.appcompat.app.AlertDialog
 import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
@@ -106,21 +106,15 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if(country.selectedItemPosition == 0) {
+                Toast.makeText(this, "Please select country", Toast.LENGTH_SHORT).show()
+            }
+
             val genderText = findViewById<RadioButton>(genderId).text.toString()
 
-            val message = """
-                            ID: $id
-                            Name: $name
-                            Email: $emailValue
-                            Password: $passwordValue
-                            Age: $ageValue
-                            Gender: $genderText
-                            Sports: $sportsText
-                            Country: ${country.selectedItem}
-                            DOB: $birth
-                        """.trimIndent()
+            val message = "ID: $id\nName: $name\nEmail: $emailValue\nPassword: $passwordValue\nAge: $ageValue\nGender: $genderText\nSports: $sportsText\nCountry: ${country.selectedItem}\nBirth: $birth"
 
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+            AlertDialog.Builder(this).setTitle("Student Details").setMessage(message).setPositiveButton("OK", null).show()
         }
 
     }
