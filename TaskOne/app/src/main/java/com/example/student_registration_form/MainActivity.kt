@@ -64,7 +64,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         submitBtn.setOnClickListener {
-
             val id = studentID.text.toString()
             val name = fullName.text.toString()
             val emailValue = email.text.toString()
